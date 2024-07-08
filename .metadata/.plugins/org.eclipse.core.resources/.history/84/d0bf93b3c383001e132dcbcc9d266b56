@@ -1,0 +1,10 @@
+package classe;
+
+public class Data {
+	
+	int dia, mes, ano;
+	
+	String obterDataFormatada() {
+		return dia+"/"+ String.format("%02d", mes)+"/"+ano;
+	}
+}
