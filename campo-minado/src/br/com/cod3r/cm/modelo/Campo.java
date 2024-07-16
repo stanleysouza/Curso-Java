@@ -13,6 +13,8 @@ public class Campo {
     private boolean minado = false;
     private boolean marcado = false;
 
+
+
     private List<Campo>  vizinhos = new ArrayList<>();
 
     public Campo(int linha, int coluna){
@@ -29,10 +31,10 @@ public class Campo {
         int deltaColuna = Math.abs(coluna - vizinho.coluna);
         int deltaGeral = deltaColuna + deltaLinha;
 
-        if (deltaGeral == 1 && !diagonal){
+        if (deltaGeral == 1){
             vizinhos.add(vizinho);
             return true;
-        } else if(deltaGeral ==2 && diagonal) {
+        } else if(deltaGeral == 2 && diagonal) {
             vizinhos.add(vizinho);
             return true;
         } else {
@@ -41,7 +43,7 @@ public class Campo {
 
     }
 
-    public  void alternarMarcacao() {
+    public void alternarMarcacao() {
         if(!aberto){
             marcado = !marcado;
         }
@@ -76,6 +78,15 @@ public class Campo {
     public boolean isFechado() {
         return !isAberto();
     }
+    public boolean isNaoMarcado(){return !isMarcado();}
+    public boolean isMinado(){return minado;}
+    public boolean isNaoMinado(){return !isMinado();}
+
+    public void setAberto(boolean aberto) {
+        this.aberto = aberto;
+    }
+
+
 
     public int getLinha() {
         return linha;

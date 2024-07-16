@@ -39,15 +39,39 @@ public class CampoTeste {
     }
 
     @Test
-    void testeVizinhoRealDiagonal() {
+    void testeVizinhoRealDiagonal1() {
         Campo vizinho = new Campo(2,2);
+        boolean resultado = campo.adicionarVizinho(vizinho);
+        Assertions.assertTrue(resultado);
+    }
+    @Test
+    void testeVizinhoRealDiagonal2() {
+        Campo vizinho = new Campo(4,4);
+        boolean resultado = campo.adicionarVizinho(vizinho);
+        Assertions.assertTrue(resultado);
+    }
+    @Test
+    void testeVizinhoRealDiagonal3() {
+        Campo vizinho = new Campo(4,2);
+        boolean resultado = campo.adicionarVizinho(vizinho);
+        Assertions.assertTrue(resultado);
+    }
+    @Test
+    void testeVizinhoRealDiagonal4() {
+        Campo vizinho = new Campo(2,4);
         boolean resultado = campo.adicionarVizinho(vizinho);
         Assertions.assertTrue(resultado);
     }
 
     @Test
-    void testeVizinhoFalso() {
-        Campo vizinho = new Campo(5,2);
+    void testeVizinhoFalsoDiagonalDistancia2() {
+        Campo vizinho = new Campo(1,1);
+        boolean resultado = campo.adicionarVizinho(vizinho);
+        Assertions.assertFalse(resultado);
+    }
+    @Test
+    void testeVizinhoFalsoLinhaDistancia2() {
+        Campo vizinho = new Campo(3,1);
         boolean resultado = campo.adicionarVizinho(vizinho);
         Assertions.assertFalse(resultado);
     }
@@ -151,7 +175,53 @@ public class CampoTeste {
         campo.adicionarVizinho(vizinho1);
         Assertions.assertEquals(1,campo.minasNaVizinhaca());
     }
+    @Test
+    void testeReiniciar() {
+        campo.reiniciar();
+        Assertions.assertTrue(campo.isFechado() && campo.isNaoMarcado() && campo.isNaoMinado());
+    }
+    @Test
+    void testeToString(){
+        //campo fechado
+        String a = campo.toString();
+        Assertions.assertEquals("?", a);
+        //campo aberto
+        campo.abrir();
+        String b = campo.toString();
+        Assertions.assertEquals(" ", b);
+        //campo com vizinho minado
+        campo.reiniciar();
+        Campo vizinho = new Campo(3,2);
+        vizinho.minar();
+        campo.adicionarVizinho(vizinho);
+        campo.abrir();
+        String c = campo.toString();
+        Assertions.assertEquals("1", c);
+        //campo marcado
+        campo.reiniciar();
+        campo.alternarMarcacao();
+        String d = campo.toString();
+        Assertions.assertEquals("x", d);
+        //campo minado
+        campo.reiniciar();
+        campo.minar();
+        Assertions.assertThrows(ExplosaoException.class, () ->{
+            campo.abrir();
+        });
+        String e = campo.toString();
+        Assertions.assertEquals("*", e);
+    }
+    @Test
+    void testeAbrirCampoAberto(){
+        campo.abrir();
+        Assertions.assertFalse(campo.abrir());
+    }
 
-
+    @Test
+    void testeMarcarCampoAberto() {
+        campo.abrir();
+        campo.alternarMarcacao();
+        Assertions.assertFalse(campo.isMarcado());
+    }
 
 }
