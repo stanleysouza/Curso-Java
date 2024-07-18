@@ -24,9 +24,10 @@ public class Campo {
     public void registrarObservador(CampoObservador observador){
         observadores.add(observador);
     }
+
     private void notificarObservadores(CampoEvento evento){
         observadores.stream()
-                .forEach(o -> o.eventoOcorreu(this, evento));
+                .forEach(o -> o.eventoOcorreu(Campo.this, evento));
     }
 
     public boolean adicionarVizinho(Campo vizinho) {
@@ -64,6 +65,7 @@ public class Campo {
         if(!aberto && !marcado){
             if(minado){
                 notificarObservadores(CampoEvento.EXPLODIR);
+                return true;
             }
             setAberto(true);
 
