@@ -6,7 +6,7 @@ public class testeValidacoes {
 	public static void main(String[] args) {
 		
 		try {
-			Aluno aluno = new Aluno("Stanley",);
+			Aluno aluno = new Aluno("Stanley", 1);
 			Validar.aluno(aluno);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
