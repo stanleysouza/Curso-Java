@@ -87,7 +87,7 @@ public class Tabuleiro {
             sb.append(" ");
         }
         sb.append("\n");
-        int i = 0;
+        int i = 0;\
         for (int l = 0; l < linhas; l++){
             sb.append(" ");
             sb.append(l);
