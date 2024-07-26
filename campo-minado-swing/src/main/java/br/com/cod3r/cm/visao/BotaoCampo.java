@@ -55,6 +55,8 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
 
     private void aplicarEstiloPadrao() {
         setBackground(BG_PADRAO);
+        setBorder(BorderFactory.createBevelBorder(0));
+        setOpaque(true);
         setText("");
     }
 
@@ -72,6 +74,10 @@ public class BotaoCampo extends JButton implements CampoObservador, MouseListene
     }
 
     private void aplicarEstiloAbrir() {
+        if(campo.isMinado()){
+            setBackground(BG_EXPLOSAO);
+            return;
+        }
         setBackground(BG_PADRAO);
         setBorder(BorderFactory.createLineBorder(Color.GRAY));
         if (campo.minasNaVizinhaca() > 0 ){

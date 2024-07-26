@@ -48,6 +48,7 @@ public class Tabuleiro implements CampoObservador {
     private void mostrarMinas() {
         campos.stream()
                 .filter(Campo::isMinado)
+                .filter(Campo::isNaoMarcado)
                 .forEach(c -> c.setAberto(true));
     }
 
