@@ -6,5 +6,7 @@ module br.com.cod3r.exerciciosjavafx {
     requires java.desktop;
 
     opens basico;
+    opens layout;
+    opens fxml;
 
 }
