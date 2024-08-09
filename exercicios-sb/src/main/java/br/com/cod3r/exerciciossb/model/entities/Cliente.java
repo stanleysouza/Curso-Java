@@ -1,4 +1,4 @@
-package br.com.cod3r.exerciciossb.models;
+package br.com.cod3r.exerciciossb.model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
